@@ -1,0 +1,35 @@
+---
+description: スレッド指示を docs/*.md にも反映する
+alwaysApply: true
+---
+
+# docs 同期ルール
+
+ユーザーがスレッドで出した指示・仕様変更・デザイン決定は、実装とあわせて **該当する `docs/*.md` にも反映する**。
+
+## マッピング
+
+| 対象 | 更新先 |
+| --- | --- |
+| サイト全体・デザイン・サイトマップ | `docs/README.md` |
+| ヘッダー/フッター/戻る/星空など共通 | `docs/common.md` |
+| Home | `docs/home.md` |
+| About | `docs/about.md` |
+| Work 一覧 | `docs/work.md` |
+| Work 詳細・作品データ | `docs/work-detail.md` |
+| Blog 一覧 | `docs/blog.md` |
+| Blog 詳細 | `docs/blog-detail.md` |
+| Contact | `docs/contact.md` |
+| 指示の出し方・定型 | `docs/prompt.md` |
+
+## 手順
+
+1. 指示を実装（または仕様として記録）する
+2. 上記の該当 MD を同じ内容で更新する（矛盾・古い記述を直す）
+3. 複数ページにまたがる変更は、関係する MD をすべて更新する
+4. 「docs は触るな」と明示されたときだけスキップする
+
+## 書き方
+
+- チャットの言い回しをそのまま貼らず、仕様として簡潔に書く
+- 既存の見出し構造・リンクを崩さない

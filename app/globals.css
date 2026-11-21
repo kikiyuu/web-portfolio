@@ -1,26 +1,797 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #101c2b;
+  --foreground: #f5efe6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: #101c2b;
+  --color-navy-soft: #c5ced9;
+  --color-cream: #f3efe6;
+  --color-paper: #faf9f6;
+  --color-ink: #2a241c;
+  --color-brown: #6e4a36;
+  --color-brown-soft: #ebe3d8;
+  --color-brown-deep: #3d2618;
+  --color-orange: #e06a21;
+  --font-sans: var(--font-shippori), "Hiragino Mincho ProN", serif;
+  --font-heading: var(--font-cinzel), serif;
+  --font-script: var(--font-belle), cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
+.night-sky {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  contain: paint;
+  z-index: 0;
+}
+
+.night-sky-milky,
+.night-sky-stars,
+.night-sky-stars--drift,
+.night-sky-bright {
+  position: absolute;
+  inset: 0;
+}
+
+.night-sky-milky {
+  background:
+    radial-gradient(
+      ellipse 90% 34% at 52% 38%,
+      rgba(186, 206, 240, 0.16),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 42% 16% at 48% 40%,
+      rgba(255, 248, 235, 0.1),
+      transparent 70%
+    );
+  transform: rotate(-16deg) scale(1.15);
+}
+
+.night-sky-stars,
+.night-sky-stars--drift {
+  background-repeat: repeat;
+}
+
+.night-sky-stars {
+  background-image:
+    radial-gradient(
+      2px 2px at 125px 155px,
+      rgba(255, 252, 245, 0.85),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 246px 164px,
+      rgba(255, 252, 245, 0.9),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 244px 70px,
+      rgba(255, 252, 245, 0.7),
+      transparent
+    ),
+    radial-gradient(
+      1.5px 1.5px at 280px 218px,
+      rgba(255, 252, 245, 0.88),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 122px 166px,
+      rgba(255, 252, 245, 0.95),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 11px 175px,
+      rgba(255, 252, 245, 0.7),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 25px 81px,
+      rgba(210, 225, 255, 0.9),
+      transparent
+    ),
+    radial-gradient(
+      1.5px 1.5px at 308px 188px,
+      rgba(255, 252, 245, 0.92),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 206px 190px,
+      rgba(210, 225, 255, 0.95),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 191px 28px,
+      rgba(210, 225, 255, 0.75),
+      transparent
+    ),
+    radial-gradient(
+      2px 2px at 227px 203px,
+      rgba(255, 252, 245, 0.95),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 201px 150px,
+      rgba(255, 252, 245, 0.85),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 122px 235px,
+      rgba(255, 252, 245, 0.88),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 147px 159px,
+      rgba(210, 225, 255, 0.9),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 281px 235px,
+      rgba(210, 225, 255, 0.85),
+      transparent
+    ),
+    radial-gradient(
+      1.5px 1.5px at 297px 72px,
+      rgba(255, 252, 245, 0.8),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 331px 127px,
+      rgba(210, 225, 255, 0.78),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 81px 9px,
+      rgba(255, 252, 245, 0.88),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 64px 15px,
+      rgba(255, 252, 245, 0.82),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 286px 229px,
+      rgba(255, 252, 245, 0.86),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 162px 5px,
+      rgba(255, 252, 245, 0.72),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 105px 252px,
+      rgba(210, 225, 255, 0.8),
+      transparent
+    );
+  background-size: 340px 260px;
+  animation: night-twinkle 5s ease-in-out infinite alternate;
+}
+
+.night-sky-stars--drift {
+  background-image:
+    radial-gradient(
+      1.5px 1.5px at 241px 317px,
+      rgba(210, 225, 255, 0.75),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 350px 7px,
+      rgba(255, 252, 245, 0.88),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 45px 175px,
+      rgba(210, 225, 255, 0.9),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 235px 220px,
+      rgba(210, 225, 255, 0.7),
+      transparent
+    ),
+    radial-gradient(
+      1.5px 1.5px at 71px 263px,
+      rgba(255, 252, 245, 0.92),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 386px 56px,
+      rgba(210, 225, 255, 0.78),
+      transparent
+    ),
+    radial-gradient(
+      2px 2px at 410px 219px,
+      rgba(255, 252, 245, 0.95),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 207px 147px,
+      rgba(210, 225, 255, 0.88),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 6px 214px,
+      rgba(255, 252, 245, 0.95),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 75px 16px,
+      rgba(255, 252, 245, 0.82),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 61px 309px,
+      rgba(255, 252, 245, 0.7),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 440px 107px,
+      rgba(210, 225, 255, 0.72),
+      transparent
+    ),
+    radial-gradient(
+      1.5px 1.5px at 280px 12px,
+      rgba(255, 252, 245, 0.9),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 105px 219px,
+      rgba(255, 252, 245, 0.8),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 51px 300px,
+      rgba(255, 252, 245, 0.74),
+      transparent
+    ),
+    radial-gradient(
+      2px 2px at 25px 31px,
+      rgba(255, 252, 245, 0.92),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 80px 141px,
+      rgba(255, 252, 245, 0.7),
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 125px 86px,
+      rgba(255, 252, 245, 0.9),
+      transparent
+    );
+  background-size: 460px 340px;
+  animation: night-drift 22s ease-in-out infinite alternate;
+}
+
+.night-sky-bright {
+  background-image:
+    radial-gradient(
+      circle at 12% 22%,
+      rgba(255, 250, 235, 1) 0 1.5px,
+      transparent 2.5px
+    ),
+    radial-gradient(
+      circle at 38% 14%,
+      rgba(210, 230, 255, 1) 0 1.2px,
+      transparent 2.4px
+    ),
+    radial-gradient(
+      circle at 71% 28%,
+      rgba(255, 250, 235, 1) 0 1.6px,
+      transparent 3px
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(220, 235, 255, 1) 0 1.2px,
+      transparent 2.5px
+    ),
+    radial-gradient(
+      circle at 18% 62%,
+      rgba(255, 248, 230, 1) 0 1.4px,
+      transparent 2.8px
+    ),
+    radial-gradient(
+      circle at 54% 72%,
+      rgba(210, 228, 255, 1) 0 1.2px,
+      transparent 2.4px
+    ),
+    radial-gradient(
+      circle at 82% 58%,
+      rgba(255, 250, 235, 1) 0 1.5px,
+      transparent 3px
+    ),
+    radial-gradient(
+      circle at 6% 84%,
+      rgba(230, 240, 255, 1) 0 1.2px,
+      transparent 2.4px
+    );
+  filter: drop-shadow(0 0 3px rgba(255, 248, 230, 0.85));
+  animation: night-pulse 4.5s ease-in-out infinite alternate;
+}
+
+.night-sky-meteor {
+  position: absolute;
+  top: 16%;
+  left: -8%;
+  width: 140px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 250, 235, 0.95));
+  box-shadow: 0 0 8px 1px rgba(255, 248, 230, 0.45);
+  opacity: 0;
+  transform: rotate(22deg);
+  animation: night-meteor 9s ease-in infinite;
+}
+
+.night-sky-meteor::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px 3px rgba(255, 250, 235, 0.8);
+  transform: translateY(-50%);
+}
+
+.night-sky-meteor--late {
+  top: 38%;
+  left: 22%;
+  width: 110px;
+  animation-duration: 13s;
+  animation-delay: 4s;
+}
+
+@keyframes night-twinkle {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes night-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate3d(12px, -16px, 0);
+    opacity: 0.95;
+  }
+}
+
+@keyframes night-pulse {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes night-meteor {
+  0%,
+  78% {
+    opacity: 0;
+    transform: rotate(22deg) translate3d(0, 0, 0);
+  }
+  82% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0;
+    transform: rotate(22deg) translate3d(280px, 0, 0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .night-sky-meteor--late {
+    display: none;
+  }
+
+  .night-sky-meteor {
+    width: 100px;
+    animation-duration: 12s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .night-sky-stars,
+  .night-sky-stars--drift,
+  .night-sky-bright,
+  .night-sky-meteor {
+    animation: none;
+    opacity: 0.85;
+  }
+}
+
+/* Seasonal background (Blog list — cream sections) */
+.seasonal-bg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  contain: paint;
+  z-index: 0;
+}
+
+.seasonal-particle {
+  --sx: 50%;
+  --sd: 0s;
+  --su: 16s;
+  --ss: 10px;
+  --sw: 20px;
+  position: absolute;
+  top: -8%;
+  left: var(--sx);
+  width: var(--ss);
+  height: var(--ss);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: season-fall var(--su) linear var(--sd) infinite;
+}
+
+.seasonal-bg--autumn .seasonal-particle {
+  border-radius: 0 72% 0 72%;
+  transform: rotate(-28deg);
+  box-shadow: inset -1px -1px 0 rgba(42, 36, 28, 0.12);
+}
+
+.seasonal-bg--autumn .seasonal-particle--v1 {
+  background: #c45c26;
+}
+
+.seasonal-bg--autumn .seasonal-particle--v2 {
+  background: #b33a1a;
+}
+
+.seasonal-bg--autumn .seasonal-particle--v3 {
+  background: #d9772f;
+}
+
+.seasonal-bg--winter .seasonal-particle {
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.45);
+  animation-name: season-snow;
+}
+
+.seasonal-bg--winter .seasonal-particle--v2 {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.seasonal-bg--winter .seasonal-particle--v3 {
+  background: rgba(245, 248, 255, 0.88);
+}
+
+.seasonal-bg--spring .seasonal-particle {
+  border-radius: 0 70% 35% 70%;
+  transform: rotate(18deg);
+}
+
+.seasonal-bg--spring .seasonal-particle--v1 {
+  background: #f2b6c6;
+}
+
+.seasonal-bg--spring .seasonal-particle--v2 {
+  background: #e89bb0;
+}
+
+.seasonal-bg--spring .seasonal-particle--v3 {
+  background: #f7c9d4;
+}
+
+.seasonal-bg--summer .seasonal-particle {
+  border-radius: 50%;
+  background: rgba(224, 106, 33, 0.28);
+  box-shadow: 0 0 8px rgba(255, 220, 160, 0.35);
+  animation-name: season-float;
+}
+
+.seasonal-bg--summer .seasonal-particle--v2 {
+  background: rgba(180, 150, 90, 0.22);
+}
+
+.seasonal-bg--summer .seasonal-particle--v3 {
+  background: rgba(255, 236, 190, 0.4);
+}
+
+@keyframes season-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  8% {
+    opacity: 0.72;
+  }
+  70% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--sw), 112vh, 0) rotate(360deg);
+  }
+}
+
+@keyframes season-snow {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  10% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0.15;
+    transform: translate3d(var(--sw), 112vh, 0);
+  }
+}
+
+@keyframes season-float {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 20vh, 0) scale(0.7);
+  }
+  20% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.35;
+    transform: translate3d(calc(var(--sw) * 0.5), 50vh, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--sw), 90vh, 0) scale(0.85);
+  }
+}
+
+@media (max-width: 640px) {
+  .seasonal-particle:nth-child(n + 9) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seasonal-particle {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.tricolor,
+.tricolor-ribbon,
+.tricolor-bar {
+  display: flex;
+  overflow: hidden;
+}
+
+.tricolor {
+  display: inline-flex;
+  height: 3px;
+  width: 4rem;
+}
+
+.tricolor-bar {
+  flex-direction: column;
+  width: 4px;
+  height: 2.25rem;
+  flex-shrink: 0;
+}
+
+.tricolor-frame {
+  padding: 3px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #166534 0 10px,
+    #ffffff 10px 20px,
+    var(--color-orange) 20px 30px
+  );
+}
+
+.tricolor-frame__body {
+  background: var(--color-paper);
+}
+
+.tricolor-ribbon {
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  height: 12px;
+  width: 200px;
+}
+
+.tricolor > span,
+.tricolor-ribbon > span,
+.tricolor-bar > span {
+  flex: 1;
+}
+
+.tricolor > span:nth-child(1),
+.tricolor-ribbon > span:nth-child(1),
+.tricolor-bar > span:nth-child(1) {
+  background: #166534;
+}
+
+.tricolor > span:nth-child(2),
+.tricolor-ribbon > span:nth-child(2),
+.tricolor-bar > span:nth-child(2) {
+  background: #fff;
+}
+
+.tricolor > span:nth-child(3),
+.tricolor-ribbon > span:nth-child(3),
+.tricolor-bar > span:nth-child(3) {
+  background: var(--color-orange);
+}
+
+/* 角に密着（端は overflow で切れ、コーナー帯として見せる） */
+.tricolor-ribbon--tl {
+  top: 50px;
+  left: -37px;
+  transform: rotate(-40deg);
+}
+
+.tricolor-ribbon--br {
+  right: -37px;
+  bottom: 50px;
+  transform: rotate(-40deg);
+}
+
+@media (max-width: 1024px) {
+  .tricolor-ribbon {
+    height: 10px;
+    width: 160px;
+  }
+
+  .tricolor-ribbon--tl {
+    top: 42px;
+    left: -30px;
+  }
+
+  .tricolor-ribbon--br {
+    right: -30px;
+    bottom: 42px;
+  }
+}
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: #101c2b;
+  transition: background-color 0.55s ease;
+}
+
+.loading-screen.is-out {
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.loading-screen.is-out .night-sky {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.loading-script {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  margin: 0;
+  color: #f5efe6;
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.loading-script.is-pinned {
+  transform: translate(-50%, 0);
+}
+
+.loading-script-text {
+  display: inline;
+}
+
+.loading-char {
+  display: inline;
+  opacity: 0;
+}
+
+.loading-screen.is-active .loading-char {
+  animation: loading-char 0.4s ease both;
+  animation-delay: calc(0.12s + var(--i) * 0.1s);
+}
+
+.loading-screen.is-hold .loading-char,
+.loading-screen.is-out .loading-char {
+  animation: none;
+  opacity: 1;
+}
+
+html.is-loading [data-hero-title] {
+  opacity: 0;
+}
+
+@keyframes loading-char {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+body:has(#loading-screen) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen.is-active .loading-char {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+@media (scripting: none) {
+  .loading-screen {
+    display: none;
+  }
+
+  html.is-loading [data-hero-title] {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .tricolor-ribbon {
+    height: 8px;
+    width: 130px;
+  }
+
+  .tricolor-ribbon--tl {
+    top: 36px;
+    left: -24px;
+  }
+
+  .tricolor-ribbon--br {
+    right: -24px;
+    bottom: 36px;
+  }
 }
