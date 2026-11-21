@@ -88,8 +88,11 @@
 - **リポジトリ**: [github.com/kikiyuu/web-portfolio](https://github.com/kikiyuu/web-portfolio)
 - **ホスト**: Vercel（ロリポップはサイト本体には使わない。メール・ドメイン管理用なら残可）
 - **公開URL（仮）**: [portfoliosite-eta-blush.vercel.app](https://portfoliosite-eta-blush.vercel.app)
-- **運用**: いまはステージング想定。Deployment Protection（Vercel 認証）あり → ログインしないと見られない
-- **今後**: GitHub 連携後は push で自動デプロイ。確認OKなら本番反映（独自ドメイン接続は後で可）
+- **運用**: push で自動デプロイ（GitHub 連携済み）
+- **閲覧制限**: Basic認証（ブラウザの ID / パスワードポップアップ）
+  - ID / PW は Vercel 環境変数 `BASIC_AUTH_USER` / `BASIC_AUTH_PASSWORD`（値は共有しない・リポに書かない）
+  - 変数を外すと制限なしで公開できる
+- **今後**: 独自ドメイン接続・本公開時は Basic認証の要否を再判断
 
 ## 将来追加
 
