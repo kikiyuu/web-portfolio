@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cinzel, La_Belle_Aurore, Shippori_Mincho } from "next/font/google";
 import Script from "next/script";
 import { BackToTop } from "@/components/back-to-top";
+import { SiteGoogleAnalytics } from "@/components/google-analytics";
 import { LoadingScreen } from "@/components/loading-screen";
 import "./globals.css";
 
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <BackToTop />
         </div>
         <LoadingScreen />
+        <SiteGoogleAnalytics />
       </body>
     </html>
   );

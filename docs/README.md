@@ -87,16 +87,23 @@
 
 - **リポジトリ**: [github.com/kikiyuu/web-portfolio](https://github.com/kikiyuu/web-portfolio)
 - **ホスト**: Vercel（ロリポップはサイト本体には使わない。メール・ドメイン管理用なら残可）
-- **公開URL**: [kigubox-portfolio.vercel.app](https://kigubox-portfolio.vercel.app)（旧: `portfoliosite-eta-blush.vercel.app`）
+- **公開URL**: [kigubox-portfolio.vercel.app](https://kigubox-portfolio.vercel.app)（旧エイリアスは削除済み）
 - **運用**: push で自動デプロイ（GitHub 連携済み）
 - **閲覧制限**: Basic認証（ブラウザの ID / パスワードポップアップ）
   - ID / PW は Vercel 環境変数 `BASIC_AUTH_USER` / `BASIC_AUTH_PASSWORD`（値は共有しない・リポに書かない）
   - 変数を外すと制限なしで公開できる
 - **今後**: 独自ドメイン接続・本公開時は Basic認証の要否を再判断
 
+### 解析
+
+- **GA4**: `@next/third-parties/google` の `GoogleAnalytics`
+- 環境変数 `NEXT_PUBLIC_GA_MEASUREMENT_ID` があるときだけ読み込み（Vercel / `.env.local` に設定済み）
+- 測定ID自体はリポに書かない（クライアントに載る前提の公開値だが、管理は環境変数で行う）
+- Basic認証中は、ログインして見られるアクセスだけ計測される
+
 ## 将来追加
 
-- GA4 / Search Console
+- Search Console
 - Contact 送信機能
 - （メモ）スマホアプリサイト、木暮農園、EC、投資勉強サイト など
 
