@@ -4,6 +4,7 @@ import Script from "next/script";
 import { BackToTop } from "@/components/back-to-top";
 import { SiteGoogleAnalytics } from "@/components/google-analytics";
 import { LoadingScreen } from "@/components/loading-screen";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -25,13 +26,20 @@ const shipporiMincho = Shippori_Mincho({
   variable: "--font-shippori",
 });
 
+const googleSiteVerification =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: "Yuya Kigure Portfolio Site",
   description: "Yuya Kigure Portfolio Site",
   icons: {
     icon: [{ url: "/favicon-32.png", sizes: "32x32", type: "image/png" }],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
+  ...(googleSiteVerification
+    ? { verification: { google: googleSiteVerification } }
+    : {}),
 };
 
 const loadingChars = "YUYA KIGURE".split("");

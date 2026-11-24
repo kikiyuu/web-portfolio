@@ -101,9 +101,16 @@
 - 測定ID自体はリポに書かない（クライアントに載る前提の公開値だが、管理は環境変数で行う）
 - Basic認証中は、ログインして見られるアクセスだけ計測される
 
+### Search Console（学習用）
+
+- サイトマップ: `/sitemap.xml`（`app/sitemap.ts`）
+- robots: `/robots.txt`（`app/robots.ts`）
+- 公開URL: `NEXT_PUBLIC_SITE_URL`（未設定時は `https://kigubox-portfolio.vercel.app`）
+- HTMLタグ認証が必要なとき: `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` を設定
+- **注意**: Basic認証中は Googlebot がクロールできない。所有権確認は GA 連携などで可能な場合あり。検索インデックス／カバレッジの本格確認は認証解除後
+
 ## 将来追加
 
-- Search Console
 - Contact 送信機能
 - （メモ）スマホアプリサイト、木暮農園、EC、投資勉強サイト など
 
