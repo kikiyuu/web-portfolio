@@ -96,7 +96,7 @@
 
 ### 解析
 
-- **GA4**: `@next/third-parties/google` の `GoogleAnalytics`
+- **GA4**: `gtag.js` を `<head>` に配置（`beforeInteractive`）— Search Console の GA 所有権確認要件に合わせる
 - 環境変数 `NEXT_PUBLIC_GA_MEASUREMENT_ID` があるときだけ読み込み（Vercel / `.env.local` に設定済み）
 - 測定ID自体はリポに書かない（クライアントに載る前提の公開値だが、管理は環境変数で行う）
 - Basic認証中は、ログインして見られるアクセスだけ計測される

@@ -50,6 +50,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ja"
       className={`${cinzel.variable} ${shipporiMincho.variable} ${laBelleAurore.variable} h-full antialiased`}
     >
+      <head>
+        <SiteGoogleAnalytics />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <Script id="loading-played" strategy="beforeInteractive">
           {`try{if(sessionStorage.getItem("loading-played")==="1"){var s=document.createElement("style");s.textContent="#loading-screen{display:none!important}";document.head.appendChild(s)}}catch(e){}`}
@@ -82,7 +85,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <BackToTop />
         </div>
         <LoadingScreen />
-        <SiteGoogleAnalytics />
       </body>
     </html>
   );
