@@ -3,10 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 /**
  * Staging Basic Auth — browser ID/password popup.
  *
- * TEMP: Search Console 所有権確認のため、認証を一時停止中。
- * 確認できたら下の `AUTH_TEMPORARILY_DISABLED` を false に戻す。
+ * `AUTH_TEMPORARILY_DISABLED` を true にすると認証を一時停止できる。
  */
-const AUTH_TEMPORARILY_DISABLED = true;
+const AUTH_TEMPORARILY_DISABLED = false;
 
 export function middleware(request: NextRequest) {
   if (AUTH_TEMPORARILY_DISABLED) {

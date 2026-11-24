@@ -91,8 +91,7 @@
 - **運用**: push で自動デプロイ（GitHub 連携済み）
 - **閲覧制限**: Basic認証（ブラウザの ID / パスワードポップアップ）
   - ID / PW は Vercel 環境変数 `BASIC_AUTH_USER` / `BASIC_AUTH_PASSWORD`（値は共有しない・リポに書かない）
-  - **いま一時停止中**（Search Console 確認のため。`middleware.ts` の `AUTH_TEMPORARILY_DISABLED`）
-  - 確認後にフラグを戻して再公開制限できる
+  - 一時停止したいとき: `middleware.ts` の `AUTH_TEMPORARILY_DISABLED = true`
 - **今後**: 独自ドメイン接続・本公開時は Basic認証の要否を再判断
 
 ### 解析
@@ -104,11 +103,12 @@
 
 ### Search Console（学習用）
 
-- サイトマップ: `/sitemap.xml`（`app/sitemap.ts`）
+- 所有権確認: 完了（`https://kigubox-portfolio.vercel.app`）
+- サイトマップ: `/sitemap.xml`（`app/sitemap.ts`）→ Search Console で `sitemap.xml` を送信
 - robots: `/robots.txt`（`app/robots.ts`）
 - 公開URL: `NEXT_PUBLIC_SITE_URL`（未設定時は `https://kigubox-portfolio.vercel.app`）
 - HTMLタグ認証が必要なとき: `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` を設定
-- **注意**: Basic認証中は Googlebot がクロールできない。所有権確認は GA 連携などで可能な場合あり。検索インデックス／カバレッジの本格確認は認証解除後
+- **注意**: Basic認証を戻すと Googlebot はクロールできない。インデックス確認の本格運用は認証オフ or 本公開後
 
 ## 将来追加
 
