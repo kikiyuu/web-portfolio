@@ -2,9 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 /**
  * Staging Basic Auth — browser ID/password popup.
- * Enabled only when BASIC_AUTH_USER and BASIC_AUTH_PASSWORD are set.
+ *
+ * TEMP: Search Console 所有権確認のため、認証を一時停止中。
+ * 確認できたら下の `AUTH_TEMPORARILY_DISABLED` を false に戻す。
  */
+const AUTH_TEMPORARILY_DISABLED = true;
+
 export function middleware(request: NextRequest) {
+  if (AUTH_TEMPORARILY_DISABLED) {
+    return NextResponse.next();
+  }
+
   const user = process.env.BASIC_AUTH_USER;
   const password = process.env.BASIC_AUTH_PASSWORD;
 

@@ -91,7 +91,8 @@
 - **運用**: push で自動デプロイ（GitHub 連携済み）
 - **閲覧制限**: Basic認証（ブラウザの ID / パスワードポップアップ）
   - ID / PW は Vercel 環境変数 `BASIC_AUTH_USER` / `BASIC_AUTH_PASSWORD`（値は共有しない・リポに書かない）
-  - 変数を外すと制限なしで公開できる
+  - **いま一時停止中**（Search Console 確認のため。`middleware.ts` の `AUTH_TEMPORARILY_DISABLED`）
+  - 確認後にフラグを戻して再公開制限できる
 - **今後**: 独自ドメイン接続・本公開時は Basic認証の要否を再判断
 
 ### 解析
